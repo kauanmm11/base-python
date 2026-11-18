@@ -1,10 +1,10 @@
 
-def calcular_faturamento(preco,quantidade):
-    faturamento_total = quantidade * preco
-    return faturamento_total
+def calcular_total(nome,preco,quantidade):
+    preco_total = quantidade * preco
+    return nome,preco_total
 
-faturamento = calcular_faturamento(1000,50)
-print(faturamento)
+preco_total = calcular_total('monitor',1000,50)
+print(preco_total)
 
 
 
@@ -45,3 +45,54 @@ def relatorio_estoque(produtos,quantidades):
 
 relatorio = relatorio_estoque(produtos,quantidades)
 print(relatorio)
+
+
+
+produtos = ['Notebook', 'Mouse', 'Teclado', 'Monitor']
+precos = [3500, 80, 120, 900]
+quantidades = [2, 10, 5, 3]
+
+def calcular_vendas(produtos,precos,quantidades):
+    dicionario = {}
+    for id in range(len(produtos)):
+        produto =  produtos[id]
+        preco = precos[id]
+        quantidade = quantidades[id]
+        faturamento = quantidade * preco
+        dicionario[produto] = faturamento
+    return dicionario
+
+vendas = calcular_vendas(produtos,precos,quantidades)
+print(vendas)
+
+
+produtos = [
+    {'nome': 'Arroz', 'preco': 25.50, 'quantidade': 10},
+    {'nome': 'Feijão', 'preco': 8.50, 'quantidade': 20},
+    {'nome': 'Macarrão', 'preco': 5.00, 'quantidade': 15}
+]
+
+def calcular_estoque(produtos):
+    produto = []
+    preco = []
+    quantidade = []
+    produtos_preco_total = {}
+
+    for chave in produtos[0]:
+        for valor in produtos:
+            if chave == 'nome':
+                produto.append(valor[chave])
+            if chave == 'preco':
+                preco.append(valor[chave])
+            if chave == 'quantidade':
+                quantidade.append(valor[chave])
+
+
+    for i in range(len(produto)):
+        produtos_preco_total[produto[i]] = quantidade[i] * preco[i]
+
+    return produtos_preco_total
+
+preco_total = calcular_estoque(produtos)
+
+print(preco_total)
